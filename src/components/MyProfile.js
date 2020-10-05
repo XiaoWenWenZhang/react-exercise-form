@@ -14,21 +14,11 @@ class MyProfile extends Component {
   }
 
   handleChange = event => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  handleDescription = event => {
-    this.setState({
-      description: event.target.value
-    })
-  }
-
-  handleChecked = event => {
-    this.setState({
-      [event.target.name]: event.target.checked
-    })
+      [target.name]: value,
+    });
   }
 
   handleSubmit = event => {
@@ -38,52 +28,53 @@ class MyProfile extends Component {
 
 
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>My profile</h1>
+render() {
+  return (
+    <form onSubmit={this.handleSubmit}>
+      <h1>My profile</h1>
 
-        <div>
-          <label>Name:</label>
-          <input
-            type='text'
-            name='name'
-            value={this.state.name}
-            onChange={this.handleChange}>
-          </input>
-        </div>
+      <label htmlFor="name">Name:</label>
+      <input
+        type='text'
+        id="name"
+        name='name'
+        placeholder={this.state.name}
+        onChange={this.handleChange}>
+      </input>
 
-        <div>
-          <label>Gender:</label>
-          <select
-            value={this.state.gender}
-            onChange={this.handleChange}>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-          </select>
-        </div>
+      <label htmlFor="gender">Gender:</label>
+      <select
+        name="gender" 
+        id="gender"
+        value={this.state.gender}
+        onChange={this.handleChange}>
+        <option value='male'>Male</option>
+        <option value='female'>Female</option>
+      </select>
 
-        <div>
-          <label>Description：</label>
-          <textarea
-            value={this.state.description}
-            onChange={this.handleDescription}>
-          </textarea>
-        </div>
+      <label htmlFor="description">Description：</label>
+      <textarea
+        name="description"
+        id="description"
+        value={this.state.description}
+        onChange={this.handleChange}>
+      </textarea>
 
-        <div>
-          <input
-            type='checkbox'
-            onChange={this.handleChecked}>
-          </input>
-          <p>I have read the terms of conduct</p>
-        </div>
+      <div>
+        <input
+          type='checkbox'
+          name="agree"
+          id="agree"
+          onChange={this.handleChange}>
+        </input>
+        <p htmlFor="agree">I have read the terms of conduct</p>
+      </div>
 
-        <button
-          type='submit'
-          disabled={!this.state.name || !this.state.description || !this.state.agree}>
-        </button>
-      </form>
+      <button
+        type='submit'
+        disabled={!this.state.name || !this.state.description || !this.state.agree}>
+      Submit</button>
+    </form>
     );
   }
 }

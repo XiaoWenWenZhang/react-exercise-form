@@ -1,0 +1,30 @@
+@gray: #ccc;
+@darkgray: #515556;
+@skyblue: #1dafeb;
+form {
+  background-color: @gray;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 400px;
+  color: @darkgray;
+  > label,
+  > input,
+  > select,
+  > textarea,
+  > div {
+    width: 100%;
+  }
+
+  button {
+    color: white;
+    background-color: @skyblue;
+    padding: 20px;
+    width: fit-content;
+  }
+
+  button:disabled {
+    background-color: gray;
+  }
+}
